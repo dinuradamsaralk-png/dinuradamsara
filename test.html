@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinura Damsara </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="/Images/profile-modified.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        /* Custom animations */
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0% {
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0.4;
+            }
+        }
+        .pulse-glow {
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .slide-up {
+            animation: slide-up 0.8s ease-out forwards;
+        }
+        /* Navigation hide on scroll */
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+        .mobile-nav-hidden {
+            transform: translateY(100%);
+        }
+        /* Project item hover effect */
+        .project-item {
+            position: relative;
+            overflow: hidden;
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+        /* Popup backdrop blur */
+        .popup-backdrop {
+            backdrop-filter: blur(8px);
+        }
+        /* Counter animation */
+        .counter {
+            transition: all 0.5s ease;
+        }
+        /* Form input focus effect */
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        /* Form submit button hover effect */
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+        }
+        /* Success message animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        /* Textarea styling */
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        /* Social links hover effect */
+        .social-link {
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+        /* Badge styling */
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.034);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.048);
+            position: relative;
+            padding: 8px 24px;
+            display: inline-block;
+            margin-bottom: 20px;
+            position: relative;
+            color: rgb(255, 255, 255);
+            border-radius: 20px;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .hero-badge::before,
+        .hero-badge::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            background-size: 200% 200%;
+            animation: animateBorder 5s linear infinite;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .hero-badge::after {
+            animation-delay: 2s;
+            /* second line starts halfway */
+        }
+        @keyframes animateBorder {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Active nav link */
+        .nav-link-active {
+            color: #3b82f6 !important;
+        }
+        /* Review slider styles */
+        .review-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .review-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .review-card {
+            min-width: 100%;
+            padding: 0 15px;
+        }
+        .review-card-inner {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 100%;
+        }
+        .review-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .review-nav-btn:hover {
+            background: rgba(59, 130, 246, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .review-nav-btn.prev {
+            left: 10px;
+        }
+        .review-nav-btn.next {
+            right: 10px;
+        }
+        .review-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+        }
+        .review-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(156, 163, 175, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .review-dot.active {
+            background: #3b82f6;
+            transform: scale(1.2);
+        }
+        /* Star rating */
+        .star-rating {
+            color: #fbbf24;
+        }
+        .skill-tag {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            margin: 0.25rem;
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.3);
+            color: white;
+            transform: translateY(-2px);
+        }
+         .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            color: white;
+            transform: translateY(-3px);
+        }
+        /* Popup image zoom and pan styles */
+        #popup-image {
+            transition: transform 0.2s ease-out;
+            cursor: grab;
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            user-select: none;
+        }
+        #popup-image:active {
+            cursor: grabbing;
+        }
+        /* Popup container styles for better zoom experience */
+        #project-popup .overflow-auto {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        /* Zoom indicator */
+        .zoom-indicator {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            z-index: 10;
+            display: none;
+        }
+        /* Instructions for user */
+        .zoom-instructions {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            z-index: 10;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Show zoom instructions only on desktop */
+        @media (min-width: 768px) {
+            .zoom-instructions {
+                display: flex;
+            }
+        }
+        
+        /* Tools section styles */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .tool-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+        }
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.75rem;
+            object-fit: contain;
+        }
+        .tool-name {
+            font-size: 0.875rem;
+            font-weight: 400;
+            text-align: center;
+            color: #e5e7eb;
+        }
+        /* Subject checkbox styles */
+        .subject-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .subject-option {
+            position: relative;
+        }
+        .subject-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .subject-option label {
+            display: block;
+            padding: 1rem;
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(75, 85, 99, 0.3);
+            border-radius: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .subject-option input[type="checkbox"]:checked + label {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            color: #93c5fd;
+            box-shadow: 0 4px 12px -2px rgba(59, 130, 246, 0.2);
+        }
+        .subject-option label:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+        .subject-option input[type="checkbox"]:checked + label:hover {
+            border-color: rgba(59, 130, 246, 0.7);
+        }
+        
+        /* App card styles */
+        .app-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+        .app-card-inner {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .app-card:hover .app-card-inner {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+        }
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+        .app-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            color: #3b82f6;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .app-link:hover {
+            color: #60a5fa;
+            transform: translateX(5px);
+        }
+        .app-screenshot {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+    <!-- Desktop Navigation -->
+    <nav id="desktop-nav"
+        class="hidden md:flex justify-center pt-6 fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out">
+        <div
+            class="bg-gray-900/70 backdrop-blur-lg rounded-full px-8 py-3 border border-gray-800 shadow-lg shadow-blue-900/20">
+            <ul class="flex space-x-8">
+                <li><a href="#home"
+                        class="nav-link text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium">Home</a>
+                </li>
+                <li><a href="#services"
+                        class="nav-link text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium">Services</a>
+                </li>
+                <li><a href="#projects"
+                        class="nav-link text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium">Project</a>
+                </li>
+                <li><a href="#about"
+                        class="nav-link text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium">About</a>
+                </li>
+                <li><a href="#apps"
+                        class="nav-link text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium">Apps</a>
+                </li>
+                <li><a href="#contact"
+                        class="nav-link text-gray-300 hover:text-blue-500 transition-colors duration-300 font-medium">Contact
+                        Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-nav"
+        class="md:hidden fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out mb-2 ml-2 mr-2">
+        <div class="bg-gray-900/80 backdrop-blur-lg rounded-full border-t border-gray-800 p-5">
+            <ul class="flex justify-around">
+                <li><a href="#home"
+                        class="mobile-nav-link text-gray-400 p-3 rounded-full transition-all duration-300 hover:text-blue-500 hover:bg-blue-500/10 active:text-blue-500 active:bg-blue-500/20"><i
+                            class="fas fa-home text-xl"></i></a></li>
+                <li><a href="#services"
+                        class="mobile-nav-link text-gray-400 p-3 rounded-full transition-all duration-300 hover:text-blue-500 hover:bg-blue-500/10 active:text-blue-500 active:bg-blue-500/20"><i
+                            class="fas fa-briefcase text-xl"></i></a></li>
+                <li><a href="#projects"
+                        class="mobile-nav-link text-gray-400 p-3 rounded-full transition-all duration-300 hover:text-blue-500 hover:bg-blue-500/10 active:text-blue-500 active:bg-blue-500/20"><i
+                            class="fas fa-folder text-xl"></i></a></li>
+                <li><a href="#about"
+                        class="mobile-nav-link text-gray-400 p-3 rounded-full transition-all duration-300 hover:text-blue-500 hover:bg-blue-500/10 active:text-blue-500 active:bg-blue-500/20"><i
+                            class="fas fa-user text-xl"></i></a></li>
+                <li><a href="#apps"
+                        class="mobile-nav-link text-gray-400 p-3 rounded-full transition-all duration-300 hover:text-blue-500 hover:bg-blue-500/10 active:text-blue-500 active:bg-blue-500/20"><i
+                            class="fas fa-mobile-alt text-xl"></i></a></li>
+                <li><a href="#contact"
+                        class="mobile-nav-link text-gray-400 p-3 rounded-full transition-all duration-300 hover:text-blue-500 hover:bg-blue-500/10 active:text-blue-500 active:bg-blue-500/20"><i
+                            class="fas fa-phone text-xl"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home"
+        class="bg-[linear-gradient(to_bottom_right,rgba(17,17,17,0.8),rgba(0,0,0,0.8)),url('/Images/Bg-patton-1.png')] bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center relative">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute -top-40 -right-40 w-80 h-80 bg-blue-600 rounded-full filter blur-3xl opacity-20 pulse-glow">
+            </div>
+            <div
+                class="absolute top-1/2 -left-40 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl opacity-20 float-animation">
+            </div>
+            <div class="absolute -bottom-40 right-1/3 w-72 h-72 bg-cyan-600 rounded-full filter blur-3xl opacity-20 pulse-glow"
+                style="animation-delay: 2s;"></div>
+        </div>
+        <!-- Hero Content -->
+        <div class="container mx-auto px-6 text-center relative z-10 pt-16 md:pt-0">
+            <!-- Hero Badge -->
+            <div class="hero-badge text-sm ">
+                AVAILABLE FOR PROJECTS
+            </div>
+            <h1 class="text-6xl uppercase md:text-7xl font-bold mb-6">
+                Creative <br> <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Design<br></span>
+                Solutions
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+                Designing immersive experiences through graphics, web, and UX/UI where creativity meets functionality to
+                elevate your brand
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact"
+                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full text-lg uppercase text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 transform hover:-translate-y-1 inline-block">
+                    Get Started
+                </a>
+                <a href="#services"
+                    class="px-8 py-4 bg-transparent border border-white rounded-full text-lg uppercase text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300 inline-block">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- Services Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-5xl font-semibold mb-4">
+                    Our <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Services</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto px-4">
+                    I offer creative and professional digital solutions, including WordPress web development, UX/UI
+                    design, and graphic design, to help businesses build strong online identities and deliver engaging
+                    user experiences.
+                </p>
+            </div>
+            <!-- Services Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-2 slide-up"
+                    style="animation-delay: 0.1s;">
+                    <div
+                        class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fa-solid fa-pen-nib text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold mb-2 md:mb-3">Graphic Design</h3>
+                    <p class="text-gray-400 text-base md:text-base mb-4">
+                        Creative visuals and branding materials that capture attention and deliver your message
+                        effectively.
+                    </p>
+                    <a href="#contact"
+                        class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-sm md:text-base">
+                        Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="service-card bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-2 slide-up"
+                    style="animation-delay: 0.2s;">
+                    <div
+                        class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fa-solid fa-laptop-code text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold mb-2 md:mb-3">Wp Web Development</h3>
+                    <p class="text-gray-400 text-base md:text-base mb-4">
+                        Modern, responsive, and SEO-friendly WordPress websites built to match your brand and business
+                        goals.
+                    </p>
+                    <a href="#contact"
+                        class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-sm md:text-base">
+                        Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="service-card bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-2 sm:col-span-2 lg:col-span-1"
+                    style="animation-delay: 0.3s;">
+                    <div
+                        class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                        <i class="fa-solid fa-pen-ruler text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-semibold mb-2 md:mb-3">UX/UI Design</h3>
+                    <p class="text-gray-400 text-base md:text-base mb-4">
+                        Clean and user-focused designs that enhance usability and create engaging digital experiences.
+                    </p>
+                    <a href="#contact"
+                        class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors text-sm md:text-base">
+                        Learn more <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Project Gallery Section -->
+    <section id="projects" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- Projects Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                    Our <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Projects</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto px-4">
+                    Here you'll find a showcase of my latest design projects from graphic design. Each project reflects
+                    creativity, professionalism, and attention to detail.
+                </p>
+            </div>
+            <!-- Filter Bar -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button
+                    class="filter-btn px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full text-white font-medium transition-all duration-300"
+                    data-filter="all">
+                    All
+                </button>
+                <button
+                    class="filter-btn px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-gray-300 font-medium transition-all duration-300"
+                    data-filter="social">
+                    Social Media Post Design
+                </button>
+                <button
+                    class="filter-btn px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-gray-300 font-medium transition-all duration-300"
+                    data-filter="tute">
+                    Cover Page Design
+                </button>
+                <button
+                    class="filter-btn px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-gray-300 font-medium transition-all duration-300"
+                    data-filter="flyer">
+                    Flyer Design
+                </button>
+                <button
+                    class="filter-btn px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-full text-gray-300 font-medium transition-all duration-300"
+                    data-filter="other">
+                    Other
+                </button>
+            </div>
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container">
+                <!-- Project items will be dynamically inserted here -->
+            </div>
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button id="load-more-btn"
+                    class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg font-semibold text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 transform hover:-translate-y-1">
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- About Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                    About <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Me</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto px-4">
+                    Get to know me better and discover my journey in the world of design and development.
+                </p>
+            </div>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Profile Image -->
+                <div class="lg:w-1/3 flex justify-center slide-up" style="animation-delay: 0.1s;">
+                    <div class="relative">
+                        <img src="/Images/profile.png" alt="Profile"
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-2xl object-cover ">
+                        <div
+                            class="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
+                            <i class="fas fa-check text-white text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content and Counters -->
+                <div class="lg:w-2/3">
+                    <!-- Description -->
+                    <div class="mb-10 slide-up" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl md:text-4xl font-semibold mb-4">
+                            Creative <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Designer</span>
+                        </h3>
+                        <p class="text-gray-400 text-lg mb-4">
+                            I'm Dinura Damsara, a passionate Graphic Designer, Web Developer, and UI/UX Designer
+                            dedicated to bringing ideas to life through design and technology. With expertise in
+                            branding, UI/UX, web development, and digital storytelling, I create visuals and solutions
+                            that are not only aesthetically striking but also meaningful and functional.
+                        </p>
+                        <p class="text-gray-400 text-lg">
+                            My work blends creativity with precision, helping businesses and individuals communicate
+                            their identity and vision with impact.
+                        </p>
+                    </div>
+                    <!-- Skills -->
+                    <div class="mb-8 slide-up" style="animation-delay: 0.25s;">
+                        <h4 class="text-xl font-semibold mb-4">Skills & Expertise</h4>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">Graphic Design</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                            <span class="skill-tag">Web Development</span>
+                            <span class="skill-tag">Branding</span>
+                            <span class="skill-tag">WordPress</span>
+                            <span class="skill-tag">Digital Marketing</span>
+                            <span class="skill-tag">Motion Graphics</span>
+                            <span class="skill-tag">Photography</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Tools Section -->
+                    <div class="mb-8 slide-up" style="animation-delay: 0.3s;">
+                        <h4 class="text-xl font-semibold mb-4">Tools I Use</h4>
+                        <div class="tools-grid">
+                            <!-- Photoshop -->
+                            <div class="tool-item">
+                                <img src="/Images/Icon/adobe-photoshop-icon.svg" alt="Photoshop" class="tool-icon">
+                                <span class="tool-name">Photoshop</span>
+                            </div>
+                            
+                            <!-- WordPress -->
+                            <div class="tool-item">
+                                <img src="/Images/Icon/WordPress_blue_logo.png" alt="WordPress" class="tool-icon">
+                                <span class="tool-name">WordPress</span>
+                            </div>
+                            
+                            <!-- Illustrator -->
+                            <div class="tool-item">
+                                <img src="/Images/Icon/elementor-icon.svg" alt="Illustrator" class="rounded-full bg-cover tool-icon">
+                                <span class="tool-name">Illustrator</span>
+                            </div>
+                            
+                            <!-- CorelDraw -->
+                            <div class="tool-item">
+                                <img src="/Images/Icon/coreldraw-icon.svg" alt="CorelDraw" class="tool-icon">
+                                <span class="tool-name">CorelDraw</span>
+                            </div>
+                            
+                            <!-- Figma -->
+                            <div class="tool-item">
+                                <img src="/Images/Icon/figma-icon.svg" alt="Figma" class="tool-icon">
+                                <span class="tool-name">Figma</span>
+                            </div>
+                            
+                            <!-- VS Code -->
+                            <div class="tool-item">
+                                <img src="/Images/Icon/visual-studio-code-icon.svg" alt="VS Code" class="tool-icon">
+                                <span class="tool-name">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Counters -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-up" style="animation-delay: 0.4s;">
+                        <!-- Experience Counter -->
+                        <div class="bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-6 text-center">
+                            <div class="text-4xl md:text-5xl font-semibold mb-2 text-cyan-300">
+                                <span class="counter" data-target="5">0</span>+
+                            </div>
+                            <p class="text-gray-400">Years of Experience in Designer</p>
+                        </div>
+                        <!-- Projects Counter -->
+                        <div class="bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-6 text-center">
+                            <div class="text-4xl md:text-5xl font-semibold mb-2 text-cyan-300">
+                                <span class="counter" data-target="320">0</span>+
+                            </div>
+                            <p class="text-gray-400">Successfully Project Completed</p>
+                        </div>
+                    </div>
+                    <!-- Social Links -->
+                    <div class="social-links slide-up" style="animation-delay: 0.5s;">
+                        <a href="https://web.facebook.com/dinura.damsara" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/dinura_damsara/" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://lk.linkedin.com/in/dinura-damsara-816b49376" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/703236800" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://wa.me/703236800" class="social-link">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Apps Section -->
+    <section id="apps" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- Apps Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                    My <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Apps</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto px-4">
+                    Explore my collection of web applications designed to solve real-world problems with innovative solutions.
+                </p>
+            </div>
+            
+            <!-- Apps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- App 1: Media Search Engine -->
+                <div class="app-card slide-up" style="animation-delay: 0.1s;">
+                    <div class="app-card-inner">
+                        <div class="app-badge">Web App</div>
+                        <img src="/Images/app 1.png" alt="Media Search Engine" class="app-screenshot">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-search text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Media Search Engine</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            A powerful image and video search engine with download capabilities. Find and save media content from across the web with ease.
+                        </p>
+                        <a href="https://mediasearchengine.netlify.app/" target="_blank" class="app-link">
+                            Visit App <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- App 2: Subnetting Calculator -->
+                <div class="app-card slide-up" style="animation-delay: 0.2s;">
+                    <div class="app-card-inner">
+                        <div class="app-badge">Web App</div>
+                        <img src="/Images/app 2.png" alt="Subnetting Calculator" class="app-screenshot">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-calculator text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Subnetting Calculator</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            An essential tool for network administrators to quickly calculate IP subnets, network addresses, broadcast addresses, and more.
+                        </p>
+                        <a href="https://subnetting-calculator.netlify.app/" target="_blank" class="app-link">
+                            Visit App <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- App 3: PSU Calculator Pro -->
+                <div class="app-card slide-up" style="animation-delay: 0.3s;">
+                    <div class="app-card-inner">
+                        <div class="app-badge">Web App</div>
+                        <img src="/Images/app 3.png" alt="PSU Calculator Pro" class="app-screenshot">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-bolt text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">PSU Calculator Pro</h3>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Professional power supply calculator with AI analysis and performance benchmarks to help you choose the right PSU for your build.
+                        </p>
+                        <a href="https://psu-calculator.netlify.app/" target="_blank" class="app-link">
+                            Visit App <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- App Development Info -->
+            <div class="mt-16 max-w-3xl mx-auto text-center">
+                <div class="bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-8 slide-up" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4">App Development Process</h3>
+                    <p class="text-gray-400 mb-6">
+                        Each application is carefully designed and developed with user experience in mind. I focus on creating intuitive interfaces, efficient functionality, and responsive designs that work seamlessly across all devices.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <i class="fas fa-lightbulb text-blue-500 text-2xl mb-2"></i>
+                            <h4 class="font-semibold mb-1">Ideation</h4>
+                            <p class="text-sm text-gray-400">Identifying problems and conceptualizing solutions</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <i class="fas fa-code text-purple-500 text-2xl mb-2"></i>
+                            <h4 class="font-semibold mb-1">Development</h4>
+                            <p class="text-sm text-gray-400">Writing clean, efficient code with modern frameworks</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-4 rounded-lg">
+                            <i class="fas fa-rocket text-cyan-500 text-2xl mb-2"></i>
+                            <h4 class="font-semibold mb-1">Deployment</h4>
+                            <p class="text-sm text-gray-400">Launching and maintaining applications for optimal performance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- Reviews Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Customer <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Reviews</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto px-4">
+                    Hear what our clients have to say about their experience working with us.
+                </p>
+            </div>
+            <!-- Review Slider -->
+            <div class="review-slider max-w-4xl mx-auto">
+                <div class="review-track" id="review-track">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="review-card-inner slide-up" style="animation-delay: 0.1s;">
+                            <div class="flex items-center mb-4">
+                                <img src="/Images/Icon/images.webp" alt="Customer"
+                                    class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold text-lg">Officeprinters.lk</h4>
+                                    <p class="text-gray-400 text-sm">Marketing Executive.</p>
+                                </div>
+                            </div>
+                            <div class="star-rating mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300">
+                                "I had an amazing experience working with Dinura. From the very beginning, he understood exactly what I wanted for my brand. The designs were modern, professional, and perfectly aligned with my vision. What I really appreciated was his patience and attention to detail—he kept refining until I was 100% satisfied. Highly recommend him to anyone looking for quality design work."
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="review-card-inner slide-up" style="animation-delay: 0.2s;">
+                            <div class="flex items-center mb-4">
+                                <img src="https://picsum.photos/seed/customer2/60/60.jpg" alt="Customer"
+                                    class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold text-lg">Michael Chen</h4>
+                                    <p class="text-gray-400 text-sm">Marketing Director, BrandVision</p>
+                                </div>
+                            </div>
+                            <div class="star-rating mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300">
+                                "The team at Digital Experience understood our vision perfectly and brought it to life
+                                in ways we never imagined. Their expertise in both design and development created a
+                                seamless user experience that has significantly increased our conversion rates."
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="review-card-inner slide-up" style="animation-delay: 0.3s;">
+                            <div class="flex items-center mb-4">
+                                <img src="https://picsum.photos/seed/customer3/60/60.jpg" alt="Customer"
+                                    class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold text-lg">Emily Rodriguez</h4>
+                                    <p class="text-gray-400 text-sm">Founder, Bloom Boutique</p>
+                                </div>
+                            </div>
+                            <div class="star-rating mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <p class="text-gray-300">
+                                "As a small business owner, I was looking for a team that could help me establish an
+                                online presence without breaking the bank. Digital Experience delivered a beautiful
+                                website and marketing strategy that has helped my business grow exponentially."
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Review 4 -->
+                    <div class="review-card">
+                        <div class="review-card-inner slide-up" style="animation-delay: 0.4s;">
+                            <div class="flex items-center mb-4">
+                                <img src="https://picsum.photos/seed/customer4/60/60.jpg" alt="Customer"
+                                    class="w-16 h-16 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-bold text-lg">David Thompson</h4>
+                                    <p class="text-gray-400 text-sm">Product Manager, InnovateTech</p>
+                                </div>
+                            </div>
+                            <div class="star-rating mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-300">
+                                "The level of professionalism and creativity displayed by the Digital Experience team is
+                                unmatched. They took our complex requirements and turned them into an intuitive,
+                                visually stunning application that our users love. Highly recommended!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation Buttons -->
+                <button class="review-nav-btn prev" id="review-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="review-nav-btn next" id="review-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <!-- Dots Indicator -->
+                <div class="review-dots" id="review-dots">
+                    <div class="review-dot active" data-slide="0"></div>
+                    <div class="review-dot" data-slide="1"></div>
+                    <div class="review-dot" data-slide="2"></div>
+                    <div class="review-dot" data-slide="3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-20 relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- Contact Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Contact <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Us</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto px-4">
+                    Have a project in mind? We'd love to hear from you. Send us a message and we'll respond as soon as
+                    possible.
+                </p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <form id="contact-form"
+                    class="bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl p-8 slide-up">
+                    <!-- Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="769903e3-9096-4078-a24c-e793576ad68c">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <!-- Name Field -->
+                        <div>
+                            <label for="name" class="block text-gray-300 mb-2">Name</label>
+                            <input type="text" placeholder="Enter Your Name" id="name" name="name" required
+                                class="form-input w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none transition-all duration-300">
+                        </div>
+                        <!-- Email Field -->
+                        <div>
+                            <label for="email" class="block text-gray-300 mb-2">Email</label>
+                            <input type="email" placeholder="Enter Your Email" id="email" name="email" required
+                                class="form-input w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none transition-all duration-300">
+                        </div>
+                    </div>
+                    <!-- Phone Number Field -->
+                    <div class="mb-6">
+                        <label for="phone" class="block text-gray-300 mb-2">Phone Number</label>
+                        <input type="tel" placeholder="Enter Your Number (Optional)" id="phone" name="phone"
+                            class="form-input w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none transition-all duration-300">
+                    </div>
+                    <!-- Subject Field -->
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-300 mb-2">Select Subject</label>
+                        <div class="subject-options">
+                            <div class="subject-option">
+                                <input type="checkbox" id="social-media" name="subject" value="Social Media Post Design">
+                                <label for="social-media">Graphic Design</label>
+                            </div>
+                            <div class="subject-option">
+                                <input type="checkbox" id="tute-cover" name="subject" value="Tute cover Design">
+                                <label for="tute-cover">Wp Web Development</label>
+                            </div>
+                            <div class="subject-option">
+                                <input type="checkbox" id="flyer-design" name="subject" value="Flyer Design">
+                                <label for="flyer-design">UX/UI Design</label>
+                            </div>
+                            <div class="subject-option">
+                                <input type="checkbox" id="other-subject" name="subject" value="Other">
+                                <label for="other-subject">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Message Field -->
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-300 mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" required
+                            class="form-textarea w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none transition-all duration-300"
+                            placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" id="submit-button"
+                            class="submit-button px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg font-semibold text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                <!-- Success Message (hidden by default) -->
+                <div id="success-message"
+                    class="hidden mt-6 p-6 bg-green-900/30 border border-green-700 rounded-lg text-green-400 text-center fade-in">
+                    <i class="fas fa-check-circle text-3xl mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">Thank You!</h3>
+                    <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                </div>
+                <!-- Error Message (hidden by default) -->
+                <div id="error-message"
+                    class="hidden mt-6 p-6 bg-red-900/30 border border-red-700 rounded-lg text-red-400 text-center fade-in">
+                    <i class="fas fa-exclamation-circle text-3xl mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">Oops!</h3>
+                    <p>Something went wrong. Please try again later.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer class="relative overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute top-20 right-20 w-32 h-32 md:w-64 md:h-64 bg-blue-600 rounded-full filter blur-3xl opacity-15 pulse-glow">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-40 h-40 md:w-72 md:h-72 bg-purple-600 rounded-full filter blur-3xl opacity-15 float-animation">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-cyan-600 rounded-full filter blur-3xl opacity-10 pulse-glow"
+                style="animation-delay: 3s;"></div>
+        </div>
+        <!-- Footer Content -->
+        <div class="container mx-auto px-4 sm:px-6 relative z-10 py-12 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <!-- Logo and Description -->
+                <div class="lg:col-span-1 slide-up" style="animation-delay: 0.1s;">
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Vexora</span>
+                        Lab
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        We create stunning digital experiences that captivate your audience and elevate your brand to
+                        new heights.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-link text-gray-400 hover:text-blue-500">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="social-link text-gray-400 hover:text-blue-500">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="social-link text-gray-400 hover:text-blue-500">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="social-link text-gray-400 hover:text-blue-500">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Quick Links -->
+                <div class="slide-up" style="animation-delay: 0.2s;">
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-blue-500 transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-blue-500 transition-colors">Services</a>
+                        </li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-blue-500 transition-colors">Projects</a>
+                        </li>
+                        <li><a href="#about" class="text-gray-400 hover:text-blue-500 transition-colors">About</a></li>
+                        <li><a href="#apps" class="text-gray-400 hover:text-blue-500 transition-colors">Apps</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Services -->
+                <div class="slide-up" style="animation-delay: 0.3s;">
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition-colors">Graphic
+                                Design</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition-colors">Wp Web
+                                Development</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition-colors">UI/UX
+                                Design</a></li>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Contact Info -->
+                <div class="slide-up" style="animation-delay: 0.4s;">
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-blue-500"></i>
+                            <span>435/7 Makola North, Makola</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-blue-500"></i>
+                            <span>+94 70 323 6800</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-blue-500"></i>
+                            <span>dinuradamsara05@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Dinura Damsara. All rights reserved. Made By VexoraLab.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- Project Popup Modal -->
+    <div id="project-popup" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="popup-backdrop absolute inset-0 bg-black/80" onclick="closeProjectPopup()"></div>
+        <!-- Wrapper -->
+        <div class="relative max-w-4xl w-full max-h-[90vh] rounded-2xl">
+            <!-- Close button stays on top -->
+            <button onclick="closeProjectPopup()"
+                class="absolute -top-5 right-5  z-20 w-10 h-10 bg-gray-900/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <!-- Zoom instructions (hidden on mobile) -->
+            <div class="zoom-instructions">
+                <i class="fas fa-mouse"></i>
+                <span>Scroll to zoom • Drag to move</span>
+            </div>
+            <!-- Zoom indicator -->
+            <div class="zoom-indicator" id="zoom-indicator">
+                <span id="zoom-level">100%</span>
+            </div>
+            <!-- Scrollable image container -->
+            <div class="overflow-auto max-h-[90vh] rounded-2xl" id="image-container">
+                <img id="popup-image" src="" alt="Project Image" class="w-full max-h-[90vh] object-contain">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+         // Global variables for zoom and pan functionality
+        let currentScale = 1;
+        const minScale = 0.5;
+        const maxScale = 3;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+        // Global functions for project popup
+        function openProjectPopup(imageSrc) {
+            const popup = document.getElementById('project-popup');
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = imageSrc;
+            popup.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // Reset zoom and position when opening new image
+            resetZoomAndPan();
+        }
+        function closeProjectPopup() {
+            const popup = document.getElementById('project-popup');
+            popup.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            // Reset zoom and position when closing
+            resetZoomAndPan();
+        }
+        function resetZoomAndPan() {
+            const popupImage = document.getElementById('popup-image');
+            currentScale = 1;
+            translateX = 0;
+            translateY = 0;
+            popupImage.style.transform = `translate(0, 0) scale(1)`;
+            popupImage.style.cursor = 'grab';
+        }
+        // Add active state to mobile navigation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Navigation functionality
+            initNavigation();
+            // Initialize review slider
+            initReviewSlider();
+            // Hide navigation on scroll
+            const desktopNav = document.getElementById('desktop-nav');
+            const mobileNav = document.getElementById('mobile-nav');
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', function () {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                // Scrolling down
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    desktopNav.classList.add('nav-hidden');
+                    mobileNav.classList.add('mobile-nav-hidden');
+                }
+                // Scrolling up
+                else {
+                    desktopNav.classList.remove('nav-hidden');
+                    mobileNav.classList.remove('mobile-nav-hidden');
+                }
+                lastScrollTop = scrollTop;
+            });
+            // Initialize project gallery
+            initProjectGallery();
+            // Initialize counters
+            initCounters();
+            // Initialize contact form
+            initContactForm();
+            // Add zoom and pan functionality to popup image
+            const popupImage = document.getElementById('popup-image');
+            const imageContainer = document.getElementById('image-container');
+            
+            // Check if we're on a mobile device
+            const isMobile = window.innerWidth < 768;
+            
+            // Mouse wheel zoom
+            popupImage.addEventListener('wheel', function (e) {
+                // Only enable zoom on desktop
+                if (!isMobile) {
+                    e.preventDefault();
+                    // Determine zoom direction
+                    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                    let newScale = currentScale + delta;
+                    // Clamp the scale between min and max
+                    newScale = Math.max(minScale, Math.min(maxScale, newScale));
+                    // Apply the new scale
+                    updateTransform();
+                    currentScale = newScale;
+                    // Update cursor based on zoom level
+                    updateCursor();
+                    // Update zoom indicator
+                    updateZoomIndicator();
+                }
+            });
+            
+            // Mouse down - start dragging
+            popupImage.addEventListener('mousedown', function (e) {
+                if (!isMobile && currentScale > 1) {
+                    isDragging = true;
+                    startX = e.clientX - translateX;
+                    startY = e.clientY - translateY;
+                    popupImage.style.cursor = 'grabbing';
+                    e.preventDefault();
+                }
+            });
+            
+            // Mouse move - drag image
+            document.addEventListener('mousemove', function (e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    translateX = e.clientX - startX;
+                    translateY = e.clientY - startY;
+                    updateTransform();
+                }
+            });
+            
+            // Mouse up - stop dragging
+            document.addEventListener('mouseup', function () {
+                isDragging = false;
+                updateCursor();
+            });
+            
+            // Touch events for mobile
+            popupImage.addEventListener('touchstart', function (e) {
+                if (isMobile && e.touches.length === 1) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX - translateX;
+                    startY = e.touches[0].clientY - translateY;
+                    e.preventDefault();
+                }
+            });
+            
+            document.addEventListener('touchmove', function (e) {
+                if (isDragging && e.touches.length === 1) {
+                    e.preventDefault();
+                    translateX = e.touches[0].clientX - startX;
+                    translateY = e.touches[0].clientY - startY;
+                    updateTransform();
+                }
+            });
+            
+            document.addEventListener('touchend', function () {
+                isDragging = false;
+                updateCursor();
+            });
+            
+            // Double click to reset zoom
+            popupImage.addEventListener('dblclick', function () {
+                if (!isMobile) {
+                    resetZoomAndPan();
+                    updateZoomIndicator();
+                }
+            });
+            
+            // Prevent popup close when clicking on image
+            popupImage.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+            
+            // Helper functions
+            function updateTransform() {
+                popupImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+            }
+            
+            function updateCursor() {
+                if (isDragging) {
+                    popupImage.style.cursor = 'grabbing';
+                } else if (currentScale > 1) {
+                    popupImage.style.cursor = 'grab';
+                } else {
+                    popupImage.style.cursor = isMobile ? 'default' : 'zoom-in';
+                }
+            }
+            
+            function updateZoomIndicator() {
+                // Only show zoom indicator on desktop
+                if (!isMobile) {
+                    const zoomIndicator = document.getElementById('zoom-indicator');
+                    const zoomLevel = document.getElementById('zoom-level');
+                    zoomLevel.textContent = Math.round(currentScale * 100) + '%';
+                    zoomIndicator.style.display = 'block';
+                    // Hide zoom indicator after a delay
+                    clearTimeout(window.zoomTimeout);
+                    window.zoomTimeout = setTimeout(() => {
+                        zoomIndicator.style.display = 'none';
+                    }, 1500);
+                }
+            }
+        });
+        // Customer Review Slider functionality
+        function initReviewSlider() {
+            const reviewTrack = document.getElementById('review-track');
+            const reviewDots = document.querySelectorAll('.review-dot');
+            const prevBtn = document.getElementById('review-prev');
+            const nextBtn = document.getElementById('review-next');
+            let currentSlide = 0;
+            const totalSlides = reviewDots.length;
+            // Function to update slider position
+            function updateSlider() {
+                reviewTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                // Update dots
+                reviewDots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            // Previous button click
+            prevBtn.addEventListener('click', function () {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+            // Next button click
+            nextBtn.addEventListener('click', function () {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+            // Dot click
+            reviewDots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+            // Auto-play slider (optional)
+            setInterval(function () {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }, 5000);
+        }
+        // Navigation functionality
+        function initNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            // Handle desktop navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            // Handle mobile navigation clicks
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Remove active class from all links
+                    mobileNavLinks.forEach(l => {
+                        l.classList.remove('active:text-blue-500', 'active:bg-blue-500/20');
+                    });
+                    // Add active class to clicked link
+                    this.classList.add('active:text-blue-500', 'active:bg-blue-500/20');
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            // Update active nav link on scroll
+            window.addEventListener('scroll', function () {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                // Update desktop nav
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-link-active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('nav-link-active');
+                    }
+                });
+                // Update mobile nav
+                mobileNavLinks.forEach(link => {
+                    link.classList.remove('active:text-blue-500', 'active:bg-blue-500/20');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active:text-blue-500', 'active:bg-blue-500/20');
+                    }
+                });
+            });
+        }
+        // Project Gallery functionality
+        let projectsData = [
+            { id: 1, category: 'social', image: '/Images/Social Media Post/post 9.webp' },
+            { id: 2, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 5.webp' },
+            { id: 18, category: 'flyer', image: '/Images/Flyer Design/Flyer 1.webp' },
+            { id: 18, category: 'other', image: '/Images/Other/1.webp' },
+            { id: 4, category: 'social', image: '/Images/Social Media Post/post 7.webp' },
+            { id: 18, category: 'other', image: '/Images/Other/.webp' },
+            { id: 18, category: 'other', image: '/Images/Other/2.webp' },
+            { id: 3, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 9.webp' },
+            { id: 5, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 8.webp' },
+            { id: 6, category: 'social', image: '/Images/Social Media Post/post 10.webp' },
+            { id: 7, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 2.webp' },
+            { id: 8, category: 'social', image: '/Images/Social Media Post/post 2.webp' },
+            { id: 9, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 6.webp' },
+            { id: 10, category: 'social', image: '/Images/Social Media Post/post 3.webp' },
+            { id: 11, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 4.webp' },
+            { id: 12, category: 'social', image: '/Images/Social Media Post/post 4.webp' },
+            { id: 18, category: 'flyer', image: '/Images/Flyer Design/Flyer 2.webp' },
+            { id: 13, category: 'social', image: '/Images/Social Media Post/post 5.webp' },
+            { id: 14, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 3.webp' },
+            { id: 15, category: 'social', image: '/Images/Social Media Post/post 12.webp' },
+            { id: 16, category: 'social', image: '/Images/Social Media Post/post 6.webp' },
+            { id: 17, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 7.webp' },          
+            { id: 19, category: 'social', image: '/Images/Social Media Post/post 11.webp' },
+            { id: 20, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 10.webp' },
+            { id: 21, category: 'social', image: '/Images/Social Media Post/post 8.webp' },
+            { id: 22, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 1.webp' },
+            { id: 23, category: 'tute', image: '/Images/Tute Design/Tute Cover Design 11.webp' },
+            { id: 24, category: 'social', image: '/Images/Social Media Post/post 13.webp' },
+            { id: 25, category: 'social', image: '/Images/Social Media Post/post 1.webp' },
+        ];
+        let currentFilter = 'all';
+        let visibleProjects = 6;
+        function initProjectGallery() {
+            renderProjects();
+            setupFilterButtons();
+            setupLoadMoreButton();
+        }
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            const filteredProjects = currentFilter === 'all'
+                ? projectsData
+                : projectsData.filter(project => project.category === currentFilter);
+            const projectsToShow = filteredProjects.slice(0, visibleProjects);
+            projectsToShow.forEach((project, index) => {
+                const projectElement = createProjectElement(project, index);
+                container.appendChild(projectElement);
+            });
+            // Show/hide load more button
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            if (filteredProjects.length <= visibleProjects) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-block';
+            }
+        }
+        function createProjectElement(project, index) {
+            const div = document.createElement('div');
+            div.className = 'project-item bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl overflow-hidden transition-all duration-500 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-2 slide-up';
+            div.style.animationDelay = `${index * 0.1}s`;
+            div.innerHTML = `
+                <div class="relative">
+                    <img src="${project.image}" alt="Project Image" class="w-full h-64 object-cover">
+                    <div class="project-overlay">
+                        <button onclick="openProjectPopup('${project.image}')" class="w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white hover:from-blue-600 hover:to-blue-800 transition-all duration-300 transform hover:scale-110">
+                            <i class="fas fa-eye text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return div;
+        }
+        function setupFilterButtons() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Update active filter button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('from-blue-500', 'to-blue-700', 'text-white');
+                        btn.classList.add('bg-gray-800', 'text-gray-300');
+                    });
+                    this.classList.remove('bg-gray-800', 'text-gray-300');
+                    this.classList.add('from-blue-500', 'to-blue-700', 'text-white');
+                    // Update current filter and reset visible projects
+                    currentFilter = this.getAttribute('data-filter');
+                    visibleProjects = 6;
+                    // Re-render projects
+                    renderProjects();
+                });
+            });
+        }
+        function setupLoadMoreButton() {
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            loadMoreBtn.addEventListener('click', function () {
+                visibleProjects += 3;
+                renderProjects();
+            });
+        }
+        // Counter Animation
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200; // The lower the slower
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / speed;
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            };
+            // Use Intersection Observer to trigger animation when element is in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+        }
+        // Contact Form functionality with Web3Forms
+        function initContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const submitButton = document.getElementById('submit-button');
+            
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                
+                // Disable submit button and show loading state
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                
+                // Get form data
+                const formData = new FormData(contactForm);
+                
+                // Collect selected subjects
+                const selectedSubjects = [];
+                const subjectCheckboxes = document.querySelectorAll('input[name="subject"]:checked');
+                subjectCheckboxes.forEach(checkbox => {
+                    selectedSubjects.push(checkbox.value);
+                });
+                
+                // Add the combined subjects to the form data
+                formData.set('subject', selectedSubjects.join(', '));
+                
+                // Send data to Web3Forms
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show success message
+                            successMessage.classList.remove('hidden');
+                            errorMessage.classList.add('hidden');
+                            // Reset form
+                            contactForm.reset();
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                successMessage.classList.add('hidden');
+                            }, 5000);
+                        } else {
+                            // Show error message
+                            errorMessage.classList.remove('hidden');
+                            successMessage.classList.add('hidden');
+                            // Hide error message after 5 seconds
+                            setTimeout(() => {
+                                errorMessage.classList.add('hidden');
+                            }, 5000);
+                        }
+                    })
+                    .catch(error => {
+                        // Show error message
+                        errorMessage.classList.remove('hidden');
+                        successMessage.classList.add('hidden');
+                        // Hide error message after 5 seconds
+                        setTimeout(() => {
+                            errorMessage.classList.add('hidden');
+                        }, 5000);
+                    })
+                    .finally(() => {
+                        // Re-enable submit button and restore original text
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = 'Send Message';
+                    });
+            });
+        }
+    </script>   
+</body>
+</html>
